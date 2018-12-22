@@ -5,6 +5,8 @@
 
 通用 Mapper 是为了解决 MyBatis 使用中 90% 的基本操作，使用它可以很方便的进行开发，可以节省开发人员大量的时间。
 
+[通用 Mapper 官方](https://github.com/abel533/Mapper/wiki/4.1.mappergenerator)
+
 # pom导入依赖：
 ```
 
@@ -200,3 +202,54 @@ public void findById() {
 
 }
 ```
+
+
+# 分页
+
+[pagehelper/Mybatis-PageHelper](https://github.com/pagehelper/Mybatis-PageHelper/blob/master/wikis/zh/HowToUse.md)
+
+pom.xml：
+``` 
+<!--pagehelper-->
+<dependency>
+    <groupId>com.github.pagehelper</groupId>
+    <artifactId>pagehelper-spring-boot-starter</artifactId>
+    <version>1.2.9</version>
+</dependency>
+```
+application.properties：
+
+``` 
+#pagehelper分页插件配置
+pagehelper.helperDialect=mysql
+pagehelper.reasonable=true
+pagehelper.supportMethodsArguments=true
+pagehelper.params=count=countSql
+
+
+```
+测试
+``` 
+@Test
+public void test() {
+    PageHelper.startPage(1,3);//只需要这一句即可
+    List<com.example.demo.entity.Test> userList = testMapper.select(null);
+    userList.forEach(System.out::println);
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
